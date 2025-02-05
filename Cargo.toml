@@ -1,6 +1,6 @@
 [workspace]
 members = [
-    "dynasty",
+    "dynasty-rs",
     "dynasty-macros"
 ]
 
