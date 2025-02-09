@@ -42,7 +42,7 @@ pub struct Entity {
 #[inherit(Entity)]
 #[derive(Debug)]
 pub struct Character {
-    base: Entity,
+    // Base field is automatically added by the macro
     health: f32,
     level: u32,
 }
@@ -51,7 +51,7 @@ pub struct Character {
 #[inherit(Character)]
 #[derive(Debug)]
 pub struct Player {
-    base: Character,
+    // Base field is automatically added by the macro
     experience: u32,
 }
 
@@ -102,9 +102,7 @@ impl Reflect for Transform {
             _ => None,
         }
     }
-    
-    // TODO: implement other reflection methods
-}
+    }
 ```
 
 ### Serialization
@@ -159,14 +157,12 @@ struct Component {
 
 #[inherit(Component)]
 struct RigidBody {
-    base: Component,
     mass: f32,
     velocity: (f32, f32, f32),
 }
 
 #[inherit(Component)]
 struct MeshRenderer {
-    base: Component,
     mesh: String,
     material: String,
 }
@@ -184,7 +180,6 @@ struct Event {
 
 #[inherit(Event)]
 struct CollisionEvent {
-    base: Event,
     entity_a: u64,
     entity_b: u64,
     point: (f32, f32, f32),

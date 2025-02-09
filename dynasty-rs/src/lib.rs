@@ -39,7 +39,6 @@ mod tests {
     #[inherit(Entity)]
     #[derive(Debug)]
     struct Character {
-        base: Entity,
         health: f32,
         level: u32,
     }
@@ -47,7 +46,6 @@ mod tests {
     #[inherit(Character)]
     #[derive(Debug)]
     struct Player {
-        base: Character,
         experience: u32,
     }
 
@@ -139,7 +137,6 @@ mod tests {
 
         #[inherit(Entity)]
         struct GameObject {
-            base: Entity,
             transform: Transform,
         }
 
