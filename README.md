@@ -102,7 +102,9 @@ impl Reflect for Transform {
             _ => None,
         }
     }
-    }
+    
+    // TODO: implement other reflection methods
+}
 ```
 
 ### Serialization
