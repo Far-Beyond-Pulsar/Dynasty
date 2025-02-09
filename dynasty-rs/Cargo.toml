@@ -1,6 +1,6 @@
 [package]
 name = "dynasty-rs"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 authors = ["Tristan J. Poland"]
 description = "A powerful class inheritance system for Rust game engines"
