@@ -3,7 +3,7 @@
 [![Crates.io](https://img.shields.io/crates/v/dynasty-rs.svg)](https://crates.io/crates/dynasty-rs)
 [![Documentation](https://docs.rs/dynasty-rs/badge.svg)](https://docs.rs/dynasty-rs)
 [![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](README.md#license)
-[![Build Status](https://github.com/tristanpoland/dynasty/workflows/CI/badge.svg)](https://github.com/tristanpoland/dynasty/actions)
+[![Build Status](https://github.com/tristanpoland/Dynasty/workflows/CI/badge.svg)](https://github.com/tristanpoland/Dynasty/actions)
 
 Dynasty is a powerful inheritance system for Rust, designed specifically for game engines and complex application architectures. It provides a natural class-based inheritance model while maintaining Rust's safety guarantees and performance characteristics.
 
