@@ -1,7 +1,7 @@
 # Dynasty 🏰
 
 [![Crates.io](https://img.shields.io/crates/v/dynasty-rs.svg)](https://crates.io/crates/dynasty-rs)
-[![Documentation](https://docs.rs/dynasty/badge.svg)](https://docs.rs/dynasty)
+[![Documentation](https://docs.rs/dynasty-rs/badge.svg)](https://docs.rs/dynasty-rs)
 [![License](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue.svg)](README.md#license)
 [![Build Status](https://github.com/tristanpoland/Dynasty/workflows/CI/badge.svg)](https://github.com/tristanpoland/Dynasty/actions)
 
@@ -42,7 +42,7 @@ pub struct Entity {
 #[inherit(Entity)]
 #[derive(Debug)]
 pub struct Character {
-    base: Entity,
+    // Base field is automatically added by the macro
     health: f32,
     level: u32,
 }
@@ -51,7 +51,7 @@ pub struct Character {
 #[inherit(Character)]
 #[derive(Debug)]
 pub struct Player {
-    base: Character,
+    // Base field is automatically added by the macro
     experience: u32,
 }
 
@@ -159,14 +159,12 @@ struct Component {
 
 #[inherit(Component)]
 struct RigidBody {
-    base: Component,
     mass: f32,
     velocity: (f32, f32, f32),
 }
 
 #[inherit(Component)]
 struct MeshRenderer {
-    base: Component,
     mesh: String,
     material: String,
 }
@@ -184,7 +182,6 @@ struct Event {
 
 #[inherit(Event)]
 struct CollisionEvent {
-    base: Event,
     entity_a: u64,
     entity_b: u64,
     point: (f32, f32, f32),

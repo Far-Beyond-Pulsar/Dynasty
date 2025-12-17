@@ -1,6 +1,18 @@
 use proc_macro::TokenStream;
-use quote::quote;
-use syn::{parse_macro_input, DeriveInput, Type, Ident};
+use quote::{quote, format_ident};
+use syn::{parse_macro_input, DeriveInput, Type, Fields, FieldsNamed, Visibility, parse::Parse};
+
+struct InheritArgs {
+    parent_type: Type,
+}
+
+impl Parse for InheritArgs {
+    fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
+        Ok(InheritArgs {
+            parent_type: input.parse()?,
+        })
+    }
+}
 
 #[proc_macro_derive(Class)]
 pub fn derive_class(input: TokenStream) -> TokenStream {
@@ -39,9 +51,26 @@ pub fn derive_class(input: TokenStream) -> TokenStream {
 
 #[proc_macro_attribute]
 pub fn inherit(args: TokenStream, input: TokenStream) -> TokenStream {
-    let parent_type = parse_macro_input!(args as Type);
-    let input = parse_macro_input!(input as DeriveInput);
+    let args = parse_macro_input!(args as InheritArgs);
+    let mut input = parse_macro_input!(input as DeriveInput);
+    let parent_type = &args.parent_type;
     let name = &input.ident;
+
+    // Add the base field to the struct definition
+    if let syn::Data::Struct(ref mut struct_data) = input.data {
+        if let Fields::Named(ref mut fields) = struct_data.fields {
+            // Add the base field as the first field
+            let base_field = syn::Field {
+                attrs: vec![],
+                vis: Visibility::Inherited,
+                ident: Some(format_ident!("base")),
+                colon_token: Some(Default::default()),
+                ty: args.parent_type.clone(),
+                mutability: syn::FieldMutability::None,
+            };
+            fields.named.insert(0, base_field);
+        }
+    }
 
     let expanded = quote! {
         #input
